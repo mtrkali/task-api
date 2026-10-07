@@ -32,6 +32,7 @@ const getTasks = async (req, res) => {
             success: true,
             message: "Tasks retrieved successfully",
             data: tasks,
+            user: req.user,
         });
     } catch (error) {
         res.status(500).json({
