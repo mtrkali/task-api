@@ -24,6 +24,25 @@ const createTask = async (req, res) => {
     }
 };
 
+const getTasks = async (req, res) => {
+    try {
+        const tasks = await Task.find();
+
+        res.status(200).json({
+            success: true,
+            message: "Tasks retrieved successfully",
+            data: tasks,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Failed to retrieve tasks",
+            error: error.message,
+        });
+    }
+};
+
 module.exports = {
     createTask,
+    getTasks,
 };
