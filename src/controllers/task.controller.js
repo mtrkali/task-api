@@ -44,7 +44,7 @@ const getTasks = async (req, res) => {
 
 
 
-const getTaskById = async (req, res) => {
+const getTaskById = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -63,11 +63,7 @@ const getTaskById = async (req, res) => {
             data: task,
         });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Failed to retrieve task",
-            error: error.message,
-        });
+        next(error);
     }
 };
 

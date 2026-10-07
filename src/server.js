@@ -6,6 +6,7 @@ dns.setServers(["8.8.8.8", "8.8.4.4"]);
 const express = require("express");
 const connectDB = require("./config/db");
 const taskRoutes = require("./routes/task.route");
+const errorHandler = require("./middleware/error.middleware");
 
 
 const app = express();
@@ -22,6 +23,8 @@ app.get("/", (req, res) => {
         message: "Task API is running",
     });
 });
+
+app.use(errorHandler);
 
 connectDB();
 
